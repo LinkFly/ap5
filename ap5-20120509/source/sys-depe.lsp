@@ -565,9 +565,12 @@ be withwriteaccess).  (Also process-wait inside implementations of locks.)
 #+lucid
 (defmacro without-interrupts (&rest forms)
   `(lcl:with-scheduling-inhibited ,@forms))
-#+lispworks
+#+(and lispworks (not lispworks-without-preemption-not-worked))
 (defmacro without-interrupts (&rest forms)
-  `(lispworks:WITHOUT-PREEMPTION ,@forms))
+  `(lispworks:without-preemption ,@forms))
+#+(and lispworks lispworks-without-preemption-not-worked)
+(defmacro without-interrupts (&rest forms)
+  `(system:with-other-threads-disabled ,@forms))
 
 ;                                                       ----- with-whostate
 ; do forms with the whostate bound
