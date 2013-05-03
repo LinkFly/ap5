@@ -331,10 +331,10 @@ to  be    recompiled    then  it   should   be    loadfile'd    first.
 (defvar *patchdate* nil
   "A universal time.  Time of last call to LOADPATCHES")
 
-(defun load-ap5 (&rest keys)
+(defun load-ap5 (&rest keys &key (nevercompile t) &allow-other-keys)
   (setf *patchdate* #+ignore (get-universal-time)
 	(file-write-date (bin "partial-order")))
-  (apply #'compile-ap5 :break-at-end nil :nevercompile t keys)
+  (apply #'compile-ap5 :break-at-end nil :nevercompile nevercompile keys)
   ;; (loadpatches)
   #+allegro(excl:gc t)
   #+lucid (lcl:gc)

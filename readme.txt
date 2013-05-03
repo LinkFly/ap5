@@ -1,7 +1,17 @@
-﻿1. Into "initial commit" ap5 sources exactly from ap5-20120509.zip.
+1. Into "initial commit" ap5 sources exactly from ap5-20120509.zip.
 
 Patches.
-1. lispworks:without-preemption changed to system:with-other-threads-disabled
+1. In sys-depe.lsp lispworks:without-preemption changed to system:with-other-threads-disabled
 	This is temporary decision. From lispworks manual: "with-other-threads-disabled cannot be guaranteed to be 100% safe in all cases, and therefore must not be used in end-user applications. It is useful for debugging purposes."
 
+2. In partial-.lsp added relation FALSE and changed relation 'UNORDERED
+
+3. Added keyword :nevercompile to load-ap5 function.
+
+Configuration.
+Create file config.lisp (not under control version system). Write to this file parameters:
+(defparameter *not-compiling* t) ;if not required compilation
+(defparameter *compiled-pathname* nil) ;for write fasl-files into your path
+;;; Internal 
+(defparameter *rel-path-to-source* '("ap5-20120509" "source")) ;;Changing when update official sources
 

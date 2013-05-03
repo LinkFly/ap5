@@ -126,8 +126,11 @@ Partial-Order-Merge[result-type list1 list2 ordering-relation]
 ;;; dbobjects ordered by their unique-id property
 ;;; conses ordered recursively by car then cdr
 
+#|(defrelation unordered :inline t
+	     :definition ((x y) s.t. (ignore-vars (x y) false)))|#
+(defrelation false :arity 0)
 (defrelation unordered :inline t
-	     :definition ((x y) s.t. (ignore-vars (x y) false)))
+	     :definition ((x y) s.t. (ignore-vars (x y) (false))))
 
 
 
